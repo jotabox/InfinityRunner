@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     private BoxCollider2D boxCollider;
     public int velocidadePlayer = 5;
     public int jumpForce;
+    public int coins;
 
     [SerializeField] private LayerMask layerGround;
 
@@ -49,7 +50,15 @@ public class Player : MonoBehaviour
         }
     }
 
-
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Coins"))
+        {
+            coins++;
+            Destroy(collision.gameObject);
+        }
+        
+    }
 
     public bool IsGrounded()
     {
